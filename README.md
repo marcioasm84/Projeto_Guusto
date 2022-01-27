@@ -1,4 +1,4 @@
-# Projeto_Guusto
+# Project Guusto
 Angular, Spring Boot, Postgres, Docker
 
 Structure:
@@ -27,4 +27,4 @@ username: admin
 
 password: admin123
 
-You can search for name
+You can search for name and/or country
