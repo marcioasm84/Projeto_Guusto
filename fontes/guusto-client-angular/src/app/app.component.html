@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<div class="container" *ngIf="!loged">
+
+    <div class="alert alert-danger" role="alert" *ngIf="hasError">Not Authorized</div>
+    <div class="alert alert-success" role="alert" *ngIf="hasSuccess">Authorized</div>
+
+    <div class="page-header mt-3 mb-3 justify-content-md-center">
+      <div class="col-md-4">  
+        <img src="https://guusto.com/img/GuustoLogo-Horizontal.svg" height="50px">
+      </div>
+    </div>
+    
+    <div class="row mt-3 mb-3 justify-content-md-center">    
+          <div class="col-md-4">        
+            <div class="form-group">    
+              <input type="text" class="form-control" placeholder="Login" [formControl]="username">
+            </div>
+          </div>
+    </div>
+
+    <div class="row mt-3 mb-3 justify-content-md-center">
+          <div class="col-md-4">
+              <div class="form-group">    
+                <input type="password" class="form-control" placeholder="Password" [formControl]="password">
+              </div>
+          </div>
+    </div>
+
+    <div class="row mt-3 mb-3 justify-content-md-center">
+          <div class="col-md-4">
+              <div class="form-group">    
+                <button class="btn btn-primary" (click)="login()">Login</button>
+                <span *ngIf="loading">Loading...</span>
+              </div>
+          </div>
+    </div>
+    
+</div> <!-- Container Login-->
+
+
+
+<div class="container" *ngIf="loged">
+  
+
+  <div class="page-header mt-3 mb-3">
+    <img src="https://guusto.com/img/GuustoLogo-Horizontal.svg" height="50px">
+        
+  </div>
+
+  
+  <div class="row mt-3 mb-3">
+  
+    <div class="col-sm-6">
+      
+      <div class="form-group">    
+        <input type="text" class="form-control" placeholder="Merchant Name" (keyup)="buscar()" [formControl]="filterName" >
+      </div>
+
+    </div>
+    
+    <div class="col-sm-6">
+      
+      <input type="checkbox" name="can" style="margin-right: 10px;" value="cad" (change)="buscar()" [formControl]="filterCountryCAN">
+      <span class="text-success fw-bold" href="#">CAN Merchants</span>
+      &nbsp;&nbsp;
+      
+      <input type="checkbox" style="margin-right: 10px;" value="usd" (change)="buscar()" [formControl]="filterCountryUSA">
+      <span class="text-success fw-bold" href="#">USA Merchants</span>   
+
+    </div>
+  </div>
+
+      
+  <div class="page-header">
+        <h5>List of Mechants</h5>
+    </div>
+
+    <div class="bs-example card" data-example-id="thumbnails-with-custom-content">
+        <div class="row card-body" *ngIf="list.length">
+
+
+          <!-- Item da Lista -->
+          <div class="col-sm-6 col-md-4" *ngFor="let item of list">
+            <div class="thumbnail">
+              <img src="{{ item.image }}" data-holder-rendered="true" style="height: 150px; display: block;">
+              <div class="caption">
+                <h5>{{ item.name }}</h5>
+                <p>{{ item.description }} ${{ item.minAmount }} - ${{ item.maxAmount }}
+                  <span class="badge bg-light text-dark" *ngIf="item.country=='cad'">CAN</span>
+                  <span class="badge bg-light text-dark" *ngIf="item.country=='usd'">USA</span>
+                </p>
+                <p><a href="#" class="btn btn-success" role="button">Learn more</a></p>
+              </div>
+            </div>
+          </div>
+
+      </div><!-- /Row -->
+      <div class="row card-body" *ngIf="!list.length">
+        <b>No results found</b><span *ngIf="loading">Loading...</span>
+      </div>
+
+
+
+
+  </div><!-- /bs-example  -->
+
+
+  
+
+
+</div><!--Container -->
+
+
+</body>
+</html>
+
+
+<!--
+<router-outlet></router-outlet>
+-->
