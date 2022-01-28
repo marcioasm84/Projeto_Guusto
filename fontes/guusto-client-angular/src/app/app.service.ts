@@ -20,7 +20,7 @@ export class AppService {
 
   getHeader() {    
     let Authorization = ""+localStorage.getItem("Authorization");
-    var headers_object = new HttpHeaders({
+    const headers_object = new HttpHeaders({
       'Authorization': Authorization
     });
     return headers_object;
