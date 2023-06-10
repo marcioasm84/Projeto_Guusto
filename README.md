@@ -1,4 +1,6 @@
 # Project Guusto
+
+Languages:
 Angular, Spring Boot, Postgres, Docker
 
 Structure:
